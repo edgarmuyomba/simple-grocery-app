@@ -144,6 +144,19 @@ p.value {
   font-size: 0.8rem;
 }
 
+div.total {
+  background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: whitesmoke;
+  padding: 1rem;
+}
+
+div.total>p.value {
+  font-size: 0.8rem;
+}
+
 div.cartItem {
   background-color: white;
   font-size: 0.8rem;
@@ -165,8 +178,6 @@ div.cartItem div.count {
   margin-top: 0;
 }
 
-div.empty {
-  text-align: center;
-  font-size: 0.9rem;
-  color: grey;
+div.checkout {
+  margin-top: auto;
 }

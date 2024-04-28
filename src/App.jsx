@@ -14,6 +14,7 @@ function App() {
 
   const [cart, setCart] = useState([]);
   const [open, setOpen] = useState(false);
+  const [total, setTotal] = useState(0);
 
   const listings = [
     {
@@ -58,6 +59,7 @@ function App() {
     var item = listings.find((item) => item.id == id);
     item.count = 1;
     setCart([...cart, item]);
+    setTotal(total + item.cost);
   }
 
   const removeFromCart = (id) => {
@@ -65,12 +67,16 @@ function App() {
     );
 
     setCart(newCart);
+
+    var item = cart.find((item) => item.id == id);
+    setTotal(total - (item.cost * item.count));
   }
 
   const addItem = (id) => {
     var newCart = cart.map((x) => {
       if (x.id == id) {
         x.count++;
+        setTotal(total + x.cost);
         return x;
       } else return x;
     });
@@ -84,6 +90,7 @@ function App() {
       var newCart = cart.map((x) => {
         if (x.id == id) {
           x.count--;
+          setTotal(total - x.cost);
           return x;
 
         } else return x;
@@ -150,32 +157,33 @@ function App() {
           }
         </div>
         <div className="cartView" style={{ display: open ? 'flex' : 'none' }}>
+          <div className="total">
+            <p className="header">Subtotal:</p>
+            <p className="value">UGX {total}</p>
+          </div>
           {
-            cart.length > 0
-              ?
-              cart.map((item, index) => {
-                return (
-                  <div className="cartItem" key={index}>
-                    <div className="top">
-                      {item.name}
-                    </div>
-                    <div className="bottom">
-                      <div className="count">
-                        <button className="add" onClick={() => addItem(item.id)}>+</button>
-                        {item.count}
-                        <button className="sub" onClick={() => subItem(item.id)}>-</button>
-                      </div>
-                      <Icon path={mdiTrashCan} size={1} color="tomato" style={{ cursor: 'pointer' }} onClick={() => removeFromCart(item.id)} />
-                    </div>
+            cart.map((item, index) => {
+              return (
+                <div className="cartItem" key={index}>
+                  <div className="top">
+                    {item.name}
                   </div>
-                )
-              })
-              : (
-                <div className="empty">
-                  <p>Add some items to the cart!</p>
+                  <div className="bottom">
+                    <div className="count">
+                      <button className="add" onClick={() => addItem(item.id)}>+</button>
+                      {item.count}
+                      <button className="sub" onClick={() => subItem(item.id)}>-</button>
+                    </div>
+                    <Icon path={mdiTrashCan} size={1} color="tomato" style={{ cursor: 'pointer' }} onClick={() => removeFromCart(item.id)} />
+                  </div>
                 </div>
               )
+            })
           }
+          <div className="checkout">
+            Proceed to checkout
+            <Icon
+          </div>
         </div>
       </div>
     </>
