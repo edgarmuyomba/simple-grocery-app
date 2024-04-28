@@ -1,0 +1,185 @@
+import './App.css'
+import Icon from "@mdi/react";
+import { mdiCart, mdiTrashCan } from "@mdi/js";
+
+import tomato from "./assets/tomatoes.png";
+import cabbage from "./assets/cabbage.png";
+import cauliflower from "./assets/cauliflower.png";
+import eggplant from "./assets/eggplant.png";
+import garlic from "./assets/garlic.png";
+import onions from "./assets/onions.png";
+import { useState } from 'react';
+
+function App() {
+
+  const [cart, setCart] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const listings = [
+    {
+      id: 1,
+      image: tomato,
+      name: "Tomatoes",
+      cost: 300
+    },
+    {
+      id: 2,
+      image: cabbage,
+      name: "Cabbage",
+      cost: 1000
+    },
+    {
+      id: 3,
+      image: cauliflower,
+      name: "Cauliflower",
+      cost: 2000
+    },
+    {
+      id: 4,
+      image: eggplant,
+      name: "Eggplant",
+      cost: 500
+    },
+    {
+      id: 5,
+      image: garlic,
+      name: "Garlic",
+      cost: 250
+    },
+    {
+      id: 6,
+      image: onions,
+      name: "Onions",
+      cost: 700
+    },
+  ];
+
+  const addToCart = (id) => {
+    var item = listings.find((item) => item.id == id);
+    item.count = 1;
+    setCart([...cart, item]);
+  }
+
+  const removeFromCart = (id) => {
+    var newCart = cart.filter((item) => item.id != id
+    );
+
+    setCart(newCart);
+  }
+
+  const addItem = (id) => {
+    var newCart = cart.map((x) => {
+      if (x.id == id) {
+        x.count++;
+        return x;
+      } else return x;
+    });
+    setCart(newCart);
+
+  }
+
+  const subItem = (id) => {
+    var item = cart.find((x) => x.id == id);
+    if (item.count > 1) {
+      var newCart = cart.map((x) => {
+        if (x.id == id) {
+          x.count--;
+          return x;
+
+        } else return x;
+      });
+      setCart(newCart);
+    } else {
+      removeFromCart(id);
+    }
+
+  }
+
+  const inCart = (id) => {
+    var item = cart.find((x) => x.id == id);
+    if (item) return item;
+    else return false;
+  }
+
+  return (
+    <>
+      <div className="header">
+        <div className="title"><p>Grocery App</p></div>
+        <div className="cart" title='Cart' onClick={() => {
+          setOpen(!open);
+        }}>
+          {
+            cart.length > 0
+              ? (
+                <div className="fill"></div>
+              )
+              : null
+          }
+
+          <Icon path={mdiCart} size={1} color="black" />
+        </div>
+      </div>
+      <div className="contents">
+        <div className="listings">
+          {
+            listings.map((listing, index) => {
+              return (
+                <div className="listing" key={index}>
+                  <div className="image" style={{ backgroundImage: `url(${listing.image})` }}>
+                  </div>
+                  <div className="details">
+                    <p className="title">{listing.name}</p>
+                    <p className="cost">UGX {listing.cost}</p>
+                    {
+                      inCart(listing.id)
+                        ? (
+                          <button class="remove" onClick={() => removeFromCart(listing.id)}>
+                            Remove from cart
+                          </button>
+                        )
+                        : (
+                          <button onClick={() => addToCart(listing.id)}>
+                            Add to cart
+                          </button>
+                        )
+                    }
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+        <div className="cartView" style={{ display: open ? 'flex' : 'none' }}>
+          {
+            cart.length > 0
+              ?
+              cart.map((item, index) => {
+                return (
+                  <div className="cartItem" key={index}>
+                    <div className="top">
+                      {item.name}
+                    </div>
+                    <div className="bottom">
+                      <div className="count">
+                        <button className="add" onClick={() => addItem(item.id)}>+</button>
+                        {item.count}
+                        <button className="sub" onClick={() => subItem(item.id)}>-</button>
+                      </div>
+                      <Icon path={mdiTrashCan} size={1} color="tomato" style={{ cursor: 'pointer' }} onClick={() => removeFromCart(item.id)} />
+                    </div>
+                  </div>
+                )
+              })
+              : (
+                <div className="empty">
+                  <p>Add some items to the cart!</p>
+                </div>
+              )
+          }
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default App
