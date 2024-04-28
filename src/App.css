@@ -206,3 +206,65 @@ div.success {
   color: white;
   top: -100px;
 }
+
+@media (max-width: 1024px) {
+  
+  div.listings {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 290px));
+    overflow-y: scroll;
+  }
+
+  div.image {
+    height: 250px;
+  }
+
+  div.cartView {
+    width: 45%;
+  }
+
+  div.cartItem {
+    font-size: 1rem;
+  }
+  
+  div.top {
+    padding: 0.8rem;
+  }
+  
+  div.bottom {
+    padding: 1rem;
+  }
+
+  button {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  div.total {
+    padding: 1.5rem;
+  }
+
+  div.total > p.header {
+    font-size: 1.4rem;
+  }
+  
+  div.total>p.value {
+    font-size: 1.2rem;
+  }
+
+  div.checkout {
+    padding: 0.4rem 0.6rem;
+  }
+  
+  div.checkout > p {
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  p.title {
+    font-size: 1.2rem;
+  }
+
+  p.cost {
+    font-size: 1rem;
+  }
+}
