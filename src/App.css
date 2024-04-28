@@ -145,7 +145,7 @@ p.value {
 }
 
 div.total {
-  background-color: green;
+  background-color: darkslategrey;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -180,4 +180,21 @@ div.cartItem div.count {
 
 div.checkout {
   margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: scale 0.3s ease-in-out;
+}
+
+div.checkout > p {
+  color: white;
+  font-size: 0.8rem;
+}
+
+div.checkout:hover {
+  scale: 1.03
 }

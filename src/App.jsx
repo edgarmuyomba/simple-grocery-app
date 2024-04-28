@@ -1,6 +1,6 @@
 import './App.css'
 import Icon from "@mdi/react";
-import { mdiCart, mdiTrashCan } from "@mdi/js";
+import { mdiCart, mdiTrashCan, mdiChevronDoubleRight } from "@mdi/js";
 
 import tomato from "./assets/tomatoes.png";
 import cabbage from "./assets/cabbage.png";
@@ -180,10 +180,17 @@ function App() {
               )
             })
           }
-          <div className="checkout">
-            Proceed to checkout
-            <Icon
-          </div>
+          {
+            cart.length > 0
+              ? (
+                <div className="checkout">
+                  <p>
+                    Proceed to checkout
+                  </p>
+                  <Icon path={mdiChevronDoubleRight} size={1} color="white" />
+                </div>
+              ) : null
+          }
         </div>
       </div>
     </>
