@@ -1,8 +1,23 @@
-# React + Vite
+# Grocery App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple grocery shopping site designed using react, html, css and javascript
 
-Currently, two official plugins are available:
+## How to run
+1. Clone the repository
+   ```bash
+    git clone <url>
+   ```
+2. Install the necessary dependencies
+   ```bash
+    npm install
+   ```
+3. Run the app
+   ```bash
+    npm run dev
+   ```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+1. Flexible use of the cart ie `add` and `subtract` item count, `delete` items
+2. Sub-total calculation
+3. Mock checkout feature
+4. Mobile `(max-width: 767px)` and Tablet `(max-width: 1024px)` responsivity
