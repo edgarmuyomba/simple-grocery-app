@@ -185,7 +185,7 @@ div.checkout {
   transition: scale 0.3s ease-in-out;
 }
 
-div.checkout > p {
+div.checkout>p {
   color: white;
   font-size: 0.8rem;
 }
@@ -208,7 +208,7 @@ div.success {
 }
 
 @media (max-width: 1024px) {
-  
+
   div.listings {
     grid-template-columns: repeat(auto-fit, minmax(100px, 290px));
     overflow-y: scroll;
@@ -225,11 +225,11 @@ div.success {
   div.cartItem {
     font-size: 1rem;
   }
-  
+
   div.top {
     padding: 0.8rem;
   }
-  
+
   div.bottom {
     padding: 1rem;
   }
@@ -243,10 +243,10 @@ div.success {
     padding: 1.5rem;
   }
 
-  div.total > p.header {
+  div.total>p.header {
     font-size: 1.4rem;
   }
-  
+
   div.total>p.value {
     font-size: 1.2rem;
   }
@@ -254,9 +254,8 @@ div.success {
   div.checkout {
     padding: 0.4rem 0.6rem;
   }
-  
-  div.checkout > p {
-    color: white;
+
+  div.checkout>p {
     font-size: 1.2rem;
   }
 
@@ -266,5 +265,103 @@ div.success {
 
   p.cost {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+
+  div.title>p {
+    font-size: 1.5rem;
+  }
+
+  div.cart {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    cursor: pointer;
+  }
+
+  div.fill {
+    height: 7px;
+    width: 7px;
+    background-color: green;
+    border-radius: 50px;
+  }
+
+  div.listings {
+    justify-content: center;
+    grid-template-columns: 350px;
+  }
+
+  p.title {
+    font-size: 1.3rem;
+  }
+
+  p.cost {
+    font-size: 1.2rem;
+    color: black;
+  }
+
+  button {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  div.contents {
+    flex-direction: column-reverse;
+    margin-top: 1rem;
+  }
+
+  div.cartView {
+    width: 100%;
+    min-height: 100%;
+  }
+
+  div.total {
+    padding: 2rem;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  div.total>p.header {
+    font-size: 1.5rem;
+  }
+
+  div.total>p.value {
+    font-size: 1.3rem;
+  }
+
+  div.count {
+    font-size: 1.4rem;
+  }
+
+  div.top {
+    padding: 0.8rem;
+    font-size: 1.4rem;
+  }
+
+  div.bottom {
+    padding: 1rem;
+    font-size: 1.4rem;
+  }
+
+  button {
+    padding: 0.5rem;
+    font-size: 1.4rem;
+  }
+
+  div.checkout {
+    padding: 0.7rem;
+  }
+
+  div.checkout>p {
+    font-size: 1.7rem;
+  }
+
+  div.success {
+    left: calc(50% - 150px);
+    width: 300px;
+    height: 100px;
+    top: -100px;
   }
 }
