@@ -8,13 +8,15 @@ import cauliflower from "./assets/cauliflower.png";
 import eggplant from "./assets/eggplant.png";
 import garlic from "./assets/garlic.png";
 import onions from "./assets/onions.png";
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 function App() {
 
   const [cart, setCart] = useState([]);
   const [open, setOpen] = useState(false);
   const [total, setTotal] = useState(0);
+
+  const successRef = useRef(null);
 
   const listings = [
     {
@@ -102,6 +104,12 @@ function App() {
 
   }
 
+  var clearCart = () => {
+    setCart([]);
+    setTotal(0);
+    setOpen(false);
+  }
+
   const inCart = (id) => {
     var item = cart.find((x) => x.id == id);
     if (item) return item;
@@ -110,6 +118,11 @@ function App() {
 
   return (
     <>
+      <div className="success" ref={successRef}>
+        <p className="message">
+          Checkout Successful
+        </p>
+      </div>
       <div className="header">
         <div className="title"><p>Grocery App</p></div>
         <div className="cart" title='Cart' onClick={() => {
@@ -140,7 +153,7 @@ function App() {
                     {
                       inCart(listing.id)
                         ? (
-                          <button class="remove" onClick={() => removeFromCart(listing.id)}>
+                          <button className="remove" onClick={() => removeFromCart(listing.id)}>
                             Remove from cart
                           </button>
                         )
@@ -183,7 +196,13 @@ function App() {
           {
             cart.length > 0
               ? (
-                <div className="checkout">
+                <div className="checkout" onClick={() => {
+                  clearCart();
+                  successRef.current.style.top = "50px";
+                  setTimeout(() => {
+                    successRef.current.style.top = "-100px";
+                  }, 3000);
+                }}>
                   <p>
                     Proceed to checkout
                   </p>
